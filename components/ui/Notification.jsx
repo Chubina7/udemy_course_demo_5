@@ -1,3 +1,5 @@
+import ReactDom from "react-dom";
+
 import React from "react";
 import styles from "./Notification.module.css";
 
@@ -14,11 +16,12 @@ const Notification = ({ title, message, status }) => {
 
   const cssstyles = `${styles.notification} ${statusstyles}`;
 
-  return (
+  return ReactDom.createPortal(
     <div className={cssstyles}>
       <h2>{title}</h2>
       <p>{message}</p>
-    </div>
+    </div>,
+    document.getElementById("notifications")
   );
 };
 
