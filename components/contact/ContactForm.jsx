@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./ContactForm.module.css";
+import styles from "./ContactForm.module.css"
 import Notification from "../ui/Notification";
 
 // Request function
@@ -21,7 +21,7 @@ const ContactForm = () => {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredName, setEnteredName] = useState("");
   const [enteredMessage, setEnteredMessage] = useState("");
-  const [requestStatus, setRequestStatus] = useState(null); // "pending", "success", "error"
+  const [requestStatus, setRequestStatus] = useState(null);
   const [requestError, setRequestError] = useState();
 
   // Setting timeout to disappear notification
