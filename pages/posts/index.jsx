@@ -1,5 +1,6 @@
 import AllPosts from "@/components/posts/AllPosts";
 import { getAllPosts } from "@/lib/postUtil";
+import Head from "next/head";
 import React from "react";
 
 // const DUMMY_POSTS = [
@@ -30,7 +31,15 @@ import React from "react";
 // ];
 
 const AllPostsPage = (props) => {
-  return <AllPosts posts={props.posts} />;
+  return (
+    <>
+      <Head>
+        <title>All Posts</title>
+        <meta name="desciption" content="A list of my posts" />
+      </Head>
+      <AllPosts posts={props.posts} />
+    </>
+  );
 };
 
 export function getStaticProps() {
