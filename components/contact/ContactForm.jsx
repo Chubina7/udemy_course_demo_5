@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ContactForm.module.css";
 import Notification from "../ui/Notification";
 
+// Request function
 const sendContactData = async (newMessageObj) => {
   const response = await fetch("/api/contact", {
     method: "POST",
@@ -20,8 +21,19 @@ const ContactForm = () => {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredName, setEnteredName] = useState("");
   const [enteredMessage, setEnteredMessage] = useState("");
-  const [requestStatus, setRequestStatus] = useState(); // "pending", "success", "error"
+  const [requestStatus, setRequestStatus] = useState(null); // "pending", "success", "error"
   const [requestError, setRequestError] = useState();
+
+  // Setting timeout to disappear notification
+  useEffect(() => {
+    if (requestStatus === "success" || requestStatus === "error") {
+      const timer = setTimeout(() => {
+        setRequestStatus(null);
+        setRequestError(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [requestStatus]);
 
   const sendMessageHandler = async (e) => {
     // Preventing default reload behaviour of browser
@@ -44,6 +56,9 @@ const ContactForm = () => {
     try {
       await sendContactData(newMessage);
       setRequestStatus("success");
+      setEnteredEmail("");
+      setEnteredName("");
+      setEnteredMessage("");
     } catch (error) {
       setRequestError(error.message);
       setRequestStatus("error");
