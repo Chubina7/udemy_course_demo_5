@@ -35,7 +35,7 @@ const AllPostsPage = (props) => {
     <>
       <Head>
         <title>All Posts</title>
-        <meta name="desciption" content="A list of my posts" />
+        <meta name="description" content="A list of my posts" />
       </Head>
       <AllPosts posts={props.posts} />
     </>
