@@ -24,6 +24,7 @@ function PostContent({ post }) {
               alt={image.alt}
               width={600}
               height={300}
+              layout="responsive"
             />
           </div>
         );
