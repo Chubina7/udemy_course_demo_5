@@ -28,15 +28,14 @@ export function getStaticProps({ params }) {
   };
 }
 
-export function getStaticPaths() {
+export const getStaticPaths = () => {
   const postFilenames = getPostsFiles();
-
   const slugs = postFilenames.map((fileName) => fileName.replace(/\.md$/, ""));
 
   return {
     paths: slugs.map((slug) => ({ params: { slug: slug } })),
-    fallback: true,
+    fallback: false,
   };
-}
+};
 
 export default SinglePostPage;
